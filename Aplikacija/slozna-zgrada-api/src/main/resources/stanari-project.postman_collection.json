@@ -1,0 +1,740 @@
+{
+	"info": {
+		"_postman_id": "60ae2e19-d0c3-4c02-ac72-fc452d4264bc",
+		"name": "stanari-project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get user by username",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/u/milos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"u",
+								"milos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/988b95f4-4d5c-4553-86f8-7424693d11e4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"988b95f4-4d5c-4553-86f8-7424693d11e4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all user",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"milos\",\r\n    \"name\": \"Miloš\",\r\n    \"surname\": \"Stojković\",\r\n    \"password\": \"changeme\",\r\n    \"apartmentNumber\": 1,\r\n    \"roles\": [ \"UPRAVNIK\" ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"988b95f4-4d5c-4553-86f8-7424693d11e4\",\r\n    \"username\": \"milos\",\r\n    \"name\": \"Miloš\",\r\n    \"surname\": \"Stojković\",\r\n    \"password\": \"changeme\",\r\n    \"apartmentNumber\": 1,\r\n    \"roles\": [ \"UPRAVNIK\", \"STANAR\" ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/988b95f4-4d5c-4553-86f8-7424693d11e4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"988b95f4-4d5c-4553-86f8-7424693d11e4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/988b95f4-4d5c-4553-86f8-7424693d11e4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"988b95f4-4d5c-4553-86f8-7424693d11e4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"item": [
+				{
+					"name": "get all notifications",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create notification",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test Title\",\r\n    \"text\": \"Sample notification text\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/notification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"988b95f4-4d5c-4553-86f8-7424693d11e4\",\r\n    \"username\": \"milos\",\r\n    \"name\": \"Miloš\",\r\n    \"surname\": \"Stojković\",\r\n    \"password\": \"changeme\",\r\n    \"apartmentNumber\": 1,\r\n    \"roles\": [ \"UPRAVNIK\", \"STANAR\" ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/notification/1f708128-a4ca-4962-8d86-c5846bb6d1d4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notification",
+								"1f708128-a4ca-4962-8d86-c5846bb6d1d4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete notification",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/notification/1f708128-a4ca-4962-8d86-c5846bb6d1d4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"notification",
+								"1f708128-a4ca-4962-8d86-c5846bb6d1d4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "poll",
+			"item": [
+				{
+					"name": "get all polls",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/poll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"poll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create poll",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question\": \"Ce li napravimo projekat ?\",\r\n    \"answers\": [ \"Da\", \"Ne\", \"Mozda\", \"Ce bude\" ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/poll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"poll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete poll",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/poll/1f708128-a4ca-4962-8d86-c5846bb6d1d4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"poll",
+								"1f708128-a4ca-4962-8d86-c5846bb6d1d4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "debt",
+			"item": [
+				{
+					"name": "get all debts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/debt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"debt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create debt",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"electricity\": 1000,\r\n    \"water\": 1000,\r\n    \"unitedBills\": 1000,\r\n    \"buildingBills\": 1000,\r\n    \"other\": 500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/debt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"debt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update debt",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"988b95f4-4d5c-4553-86f8-7424693d11e4\",\r\n    \"username\": \"milos\",\r\n    \"name\": \"Miloš\",\r\n    \"surname\": \"Stojković\",\r\n    \"password\": \"changeme\",\r\n    \"apartmentNumber\": 1,\r\n    \"roles\": [ \"UPRAVNIK\", \"STANAR\" ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/988b95f4-4d5c-4553-86f8-7424693d11e4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"988b95f4-4d5c-4553-86f8-7424693d11e4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete debt",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/debt/1f708128-a4ca-4962-8d86-c5846bb6d1d4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"debt",
+								"1f708128-a4ca-4962-8d86-c5846bb6d1d4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "changeme",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "milos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"milos\",\r\n    \"password\": \"changeme\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
