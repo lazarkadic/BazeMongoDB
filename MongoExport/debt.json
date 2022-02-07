@@ -1,0 +1,82 @@
+[{
+  "_id": "9572a233-d778-4953-a38f-5f120be92c8e",
+  "electricity": 900,
+  "water": 700,
+  "unitedBills": 300,
+  "buildingBills": 300,
+  "other": 1000,
+  "userId": "c3c86339-8c9a-450b-83bc-a3660ee2687f",
+  "_class": "rs.devlabs.slozna.zgrada.data.Debt"
+},{
+  "_id": "10fb997f-2647-4528-ba39-5e07a057f2c4",
+  "electricity": 500,
+  "water": 500,
+  "unitedBills": 500,
+  "buildingBills": 500,
+  "other": 500,
+  "userId": "fc269cc9-6639-42b2-9c91-38627e102693",
+  "_class": "rs.devlabs.slozna.zgrada.data.Debt"
+},{
+  "_id": "3f518d57-9eda-45e0-9653-7d6cf8a8ab1c",
+  "electricity": 1000,
+  "water": 1000,
+  "unitedBills": 1000,
+  "buildingBills": 1000,
+  "other": 1000,
+  "userId": "7e4f7f37-eac4-45fc-8c55-9138780a40b7",
+  "_class": "rs.devlabs.slozna.zgrada.data.Debt"
+},{
+  "_id": "cca12075-9d61-4f37-be3b-2c0404d55067",
+  "electricity": 350,
+  "water": 750,
+  "unitedBills": 250,
+  "buildingBills": 900,
+  "other": 8000,
+  "userId": "de7c5732-3bb4-4be5-b94f-ba2106682635",
+  "_class": "rs.devlabs.slozna.zgrada.data.Debt"
+},{
+  "_id": "c742bc81-f5e3-4513-94ce-6209a5a51fc3",
+  "electricity": 720,
+  "water": 650,
+  "unitedBills": 250,
+  "buildingBills": 0,
+  "other": 0,
+  "userId": "c60111a8-9b8e-4ab1-a60e-545f997aa129",
+  "_class": "rs.devlabs.slozna.zgrada.data.Debt"
+},{
+  "_id": "3a382837-7d7c-4da9-a9a2-2f0f5b398bdf",
+  "electricity": 600,
+  "water": 600,
+  "unitedBills": 600,
+  "buildingBills": 600,
+  "other": 600,
+  "userId": "5f78f59d-2488-4ec9-b165-7856deec47be",
+  "_class": "rs.devlabs.slozna.zgrada.data.Debt"
+},{
+  "_id": "51e0731d-d803-4cac-a3b2-eca3f33c2f11",
+  "electricity": 450,
+  "water": 450,
+  "unitedBills": 450,
+  "buildingBills": 450,
+  "other": 450,
+  "userId": "aca9ff69-3b06-4664-b7e4-05891aa643d2",
+  "_class": "rs.devlabs.slozna.zgrada.data.Debt"
+},{
+  "_id": "48cf029d-8ae0-4f3d-89eb-7ab25b00d0e5",
+  "electricity": 800,
+  "water": 800,
+  "unitedBills": 800,
+  "buildingBills": 800,
+  "other": 800,
+  "userId": "2fb272b8-ecb5-4b01-a37e-e2fda9f83c84",
+  "_class": "rs.devlabs.slozna.zgrada.data.Debt"
+},{
+  "_id": "ce287f59-d261-4629-b30d-8738c2742079",
+  "electricity": 150,
+  "water": 100,
+  "unitedBills": 100,
+  "buildingBills": 100,
+  "other": 100,
+  "userId": "35ec1e2b-bbee-4cd2-af9d-5b182005cdf3",
+  "_class": "rs.devlabs.slozna.zgrada.data.Debt"
+}]
