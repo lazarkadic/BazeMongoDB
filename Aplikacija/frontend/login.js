@@ -5,9 +5,9 @@ $(function(){
     const service = new AuthenticationService();
 
 
-    $("#btnSubmit").click(function(){       // prvi put radite login sa vrednostima sa forme, ako je proslo redirektuje opet na  
-        var user = $("#txtusername").val(); // index.html i vidi se authdata da ima vrednost, a posle se otkomentarise logout
-        var pass = $("#txtpass").val();     // i samo pritisne isto dugme na formi bez ikakvih podataka, isto redirektuje i brise authdata
+    $("#btnSubmit").click(function(){     
+        var user = $("#txtusername").val(); 
+        var pass = $("#txtpass").val();   
         service.login(user, pass);        
     });
 });

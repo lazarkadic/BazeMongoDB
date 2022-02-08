@@ -45,10 +45,10 @@ public class NotificationController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<Notification> create(Principal principal, @RequestBody Notification notification) {
+    @PostMapping("/{user}")
+    public ResponseEntity<Notification> create(@PathVariable("user") String user, @RequestBody Notification notification) {
         try {
-            Optional<User> optUser = userRepo.findByUsername(principal.getName());
+            Optional<User> optUser = userRepo.findByUsername(user);
             if (optUser.isPresent()) {
                 if (notification != null) {
                     notification.setId(UUID.randomUUID().toString());

@@ -52,10 +52,7 @@ public class PollController {
 
     @PostMapping("/{user}")
     public ResponseEntity<Poll> create(@PathVariable("user") String user, @RequestBody PollTransfer transfer) {
-        LOGGER.info("BILO STA prvi");
         try {
-            LOGGER.info(user);
-            LOGGER.info("BILO STA");
             Optional<User> optUser = userRepo.findByUsername(user);
             if (optUser.isPresent()) {
                 if (transfer != null) {

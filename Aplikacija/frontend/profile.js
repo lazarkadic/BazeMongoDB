@@ -3,7 +3,6 @@ import { AuthenticationService } from './authservice.js';
 $(function () {
 
     const service = new AuthenticationService();
-
     service.setDefaultHeader();
 
     var user = {};

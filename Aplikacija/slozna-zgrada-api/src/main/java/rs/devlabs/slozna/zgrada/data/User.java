@@ -19,7 +19,7 @@ public class User implements Serializable {
     private String surname;
     private String password;
     private int apartmentNumber;
-    //private Set<Role> roles = new HashSet<>();
+    private String role;
 
     public User() {
     }
@@ -72,11 +72,11 @@ public class User implements Serializable {
         this.apartmentNumber = apartmentNumber;
     }
 
-//    public Set<Role> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(Set<Role> roles) {
-//        this.roles = roles;
-//    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

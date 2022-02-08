@@ -10,9 +10,11 @@ $(function () {
     getAllDebts();
     addOptions();
 
+
     $("#logout").click(function () {
         service.logout();
     });
+
 
     //  EDIT
     $('.tabela').on('click', '.edit', function () {
@@ -29,7 +31,9 @@ $(function () {
                 async: false
             }).responseText);
             var apNum = user.apartmentNumber;
-            document.getElementById(apNum).selected = 'selected';
+            document.getElementById("default").selected = false;
+            document.getElementById(apNum).selected = true;
+            alert(document.getElementById(apNum).selected);
             (document.querySelector('#forSelect')).style.visibility = 'hidden';
             (document.querySelector('#forLabel')).style.visibility = 'hidden';
             $("#modalTitle").html("Edit debt");
@@ -38,12 +42,11 @@ $(function () {
     });
 
 
-
     //  ADD
     $("#add").click(function () {
         (document.querySelector('#forSelect')).style.visibility = 'visible';
         (document.querySelector('#forLabel')).style.visibility = 'visible';
-        (document.querySelector('#default')).selected = 'selected';
+        (document.querySelector('#default')).selected = true;
         $("#modalTitle").html("Add debt");
         $("#electricity").val("");
         $("#water").val("");
@@ -54,10 +57,10 @@ $(function () {
     });
 
 
-
     //  SAVE
     $("#saveDebt").click(function () {
         var uid = (document.querySelector('#select')).value;
+        alert(uid);
         var el = $("#electricity").val();
         var wa = $("#water").val();
         var ub = $("#unitedBills").val();
@@ -68,11 +71,11 @@ $(function () {
             dataType: "json",
             async: false
         }).responseText);
+        alert(user.username);
         if (el != "" && wa != "" && ub != "" && bb != "" && ot != "" && uid != "default") {
             //ako se polje vidi onda je novo dugovanje 
             if ((document.querySelector('#forSelect')).style.visibility == 'visible') {
                 var json = "{\"electricity\":" + el + ", \"water\":" + wa + ", \"unitedBills\":" + ub + ", \"buildingBills\":" + bb + ", \"other\":" + ot + ", \"userId\":\"" + user.id + "\"}";
-                //$.post(service.BASE_URL + "/debt", json)
                 $.ajax({
                     type: "POST",
                     url: service.BASE_URL + "/debt",
@@ -104,23 +107,24 @@ $(function () {
         }
     });
 
+
     $("#okay").click(function () {
         $("#alertModal").modal("hide");
     });
 
 
-
     //  DELETE
     var delId = "";
-
     $('.tabela').on('click', '.del', function () {  //zato sto su docrtavana mora da se pristupi prvo roditelju
         delId = $(this).prop('id');
         $("#deleteModal").modal('show');
     });
 
+
     $("#nevermind").click(function () {
         delId = "";
     });
+
 
     $("#modalRemove").click(function () {
         if (delId != "") {
@@ -139,7 +143,6 @@ $(function () {
     });
 
 
-
     //Dodavanje broja stana u padajucem meniju
     function addOptions() {
         $.get(service.BASE_URL + "/user", function (data) {
@@ -153,7 +156,6 @@ $(function () {
     }
 
 
-
     //prikaz svih dugovanja
     function getAllDebts() {
 
@@ -162,17 +164,16 @@ $(function () {
         }).done(function () {
 
             $.get(service.BASE_URL + "/user/u/" + atob(localStorage.getItem('user')), function (data) {
-                var role = data.roles.pop()
-                var apNum = data.apartmentNumber;
-
+                
+                var role = data.role
                 if (role === 'UPRAVNIK') {
-                    $(".dugmici").css('display','block');
-                   // $(".tableRow").hide();  //  ako hocemo da stanar vidi samo svoje dugovanje
-                   // $("#" + apNum).show();
+                    $(".dugmici").show();
                 }
             });
         });
     }
+
+
 
     function fillTable(data) {
         var zaSortiranje = new Array();

@@ -3,20 +3,22 @@ import { AuthenticationService } from './authservice.js';
 $(function () {
 
     const service = new AuthenticationService();
-
     service.setDefaultHeader();
 
     getAndPrintNotifications();
 
+
     $("#logout").click(function () {
         service.logout();
     });
+
 
     $('#newnotice').click(function () {
         $("#pollModal").modal('show');
         $(".noticeTitle").val('');
         $(".noticeText").val('');
     });
+
 
     $('#btnAddNotice').click(function () {
 
@@ -25,14 +27,16 @@ $(function () {
         notice.text = $(".noticeText").val();
 
         if (notice.title != '' && notice.text != '') {
-
-            $.post(service.BASE_URL + "/notification", JSON.stringify(notice))
+            var userAndPass = window.atob(localStorage.getItem('authdata'));
+            var userOnly = userAndPass.substring(0, userAndPass.search(":"));
+            $.post(service.BASE_URL + "/notification/" + userOnly, JSON.stringify(notice))
                 .done(function (data) {
                     getAndPrintNotifications();
                 });
         }
         $("#pollModal").modal('hide');
     });
+
 
     $('.cards').on('click', '.likeBttn', function () {
 
@@ -47,17 +51,19 @@ $(function () {
         });
     });
 
-    var delId = "";
 
+    var delId = "";
     $('.cards').on('click', '.removeBttn', function () {
 
         delId = $(this).prop('id');
     });
 
+
     $("#nevermind").click(function () {
 
         delId = "";
     });
+
 
     $("#modalRemove").click(function () {
 
@@ -77,6 +83,7 @@ $(function () {
         $("#deleteModal").modal("hide");
     });
 
+
     function getAndPrintNotifications() {
 
         var authorId = '';
@@ -85,30 +92,19 @@ $(function () {
         $.get(service.BASE_URL + "/user/u/" + atob(localStorage.getItem('user')), function (data) {
 
             user = data;
-
+            authorId = data.id;
         }).done(function () {
-            $.get(service.BASE_URL + "/user/u/" + atob(localStorage.getItem('user')), function (data) {
-
-                authorId = data.id;
-
-            }).done(function () {
 
                 $.get(service.BASE_URL + "/notification", function (data, status) {
 
-                    printNotifications(data);
+                    printNotifications(data, authorId);
 
-                    if (user.roles.pop() === 'UPRAVNIK') {
-                        $(".removeBttn").show();
-                    }
-                    else {
-                        $('.' + authorId).show();
-                    }
                 });
             });
-        });
     }
 
-    function printNotifications(data) {
+
+    function printNotifications(data, authorId) {
 
         var notice = ``;
 
@@ -153,7 +149,16 @@ $(function () {
         </div>`;
         }
         $(".cards").html(notice);
-        $(".removeBttn").hide();
+
+        for (var d of data) {
+            if (authorId === d.userId) {
+                $("." + d.userId).show();
+            }
+            else {
+                $("." + d.userId).hide();
+            }
+        }
     }
+
 });
 

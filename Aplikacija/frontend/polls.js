@@ -7,7 +7,8 @@ $(function(){
       localStorage.removeItem("user"); 
     });
 
-    $("#btnNewPoll").click(function(){          // jos u test fazi, radi sa statickim unosom za fiksno 3 odgovora
+
+    $("#btnNewPoll").click(function(){     
                                                 
         $("#exampleModal").modal('show');
         $(".pollQuestion").val('');
@@ -16,9 +17,11 @@ $(function(){
         $(".pollAnswer3").val('');
     });
 
-    $("#btnOk").click(function(){          // jos u test fazi, radi sa statickim unosom za fiksno 3 odgovora                                   
+
+    $("#btnOk").click(function(){                                   
       $("#errorModal").modal('hide');
-  });
+    });
+
 
     $("#btnAdd").click(function(){         
 
@@ -33,14 +36,6 @@ $(function(){
 
       poll.answers = answers;
 
-      // console.log(poll.question);
-      //     console.log(poll.answers[0]);
-      //     console.log(poll.answers[1]);
-      //     console.log(poll.answers[2]);
-
-      //console.log(JSON.stringify(poll));
-      //console.log(JSON.parse(JSON.stringify(poll)));
-
       if(poll.question != '' && poll.answers[0] != '' && poll.answers[1] != '' && poll.answers[2] != '')
       {
           console.log(poll.question);
@@ -51,7 +46,9 @@ $(function(){
           addPoll(poll);
           $("#exampleModal").modal('hide');  
       }
-  }); 
+    }); 
+
+
           var userId = "";
           var userAndPass = window.atob(localStorage.getItem('authdata'));
           var userOnly = userAndPass.substring(0, userAndPass.search(":"));
@@ -66,7 +63,7 @@ $(function(){
               });
             }
 
-        getUserId();
+          getUserId();
 
 
     $('#polls').on('click','.btnAddVote', function () {
@@ -86,7 +83,6 @@ $(function(){
             success: function (data) {                
                 console.log(data);
                 loadPolls();
-                //refresh();
             }
           }).done(function () {
             $("#errorModal").modal('show');
@@ -100,18 +96,20 @@ $(function(){
         }
     });
 
+
     var delId = "";
     $('#polls').on('click','.removeBttn', function () {
         
       delId = $(this).prop('id');        
       console.log(delId);    
-
     });
+
 
     $("#btnCancel").click(function(){
         delId = "";
         console.log(delId);
     });
+
 
     $("#btnDelete").click(function(){
         if(delId != ""){
@@ -129,12 +127,12 @@ $(function(){
                   
                 }
             });
-            console.log('posle ajaxa  ' + delId )
         }
         else{
             delId="";
         }
     });
+
 
     var addPoll = function(poll) {
       $.ajaxSetup({
@@ -142,17 +140,16 @@ $(function(){
         'Accept': 'application/json',
         'Content-Type': 'application/json'}
       });
-      alert("Proslo");
       var userAndPass = window.atob(localStorage.getItem('authdata'));
       var userOnly = userAndPass.substring(0, userAndPass.search(":"));
       $.post(BASE_URL + "/poll/" + userOnly, JSON.stringify(poll))
       .done(function (data) {
           loadPolls();
-          //alert("Proslo");
       });
     };
 
-    var loadPolls = function(){
+
+     var loadPolls = function(){
       $.ajaxSetup({
         headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
         'Accept': 'application/json',
@@ -162,19 +159,35 @@ $(function(){
         printPolls(data);
       });
 
+      // var authorId = '';
+      // $.get(service.BASE_URL + "/user/u/" + atob(localStorage.getItem('user')), function (data) {
+
+      //   authorId = data.id;
+      // }).done(function () {
+
+      //     $.get(BASE_URL + "/poll", function (data, status) {
+
+      //       printPolls(data, authorId);
+
+      //     });
+      // });
+
     };
 
+
     loadPolls();
+
+
     var refresh = function(){
       location.href = location.href;
     };
 
-    function printPolls(data) {
+
+    function printPolls(data/*, authorId*/) {
 
       var poll = ``;
   
       data.reverse();
-      
   
       for (var p of data) {
 
@@ -208,7 +221,7 @@ $(function(){
             <div class="card card-inverse card-info">
             <div class="card-footer">
                     <label>Posted by: ${name}</label>
-                    <button id=${p.id} type="button" class="removeBttn close" data-toggle="modal" data-target="#deleteModal">
+                    <button id=${p.id} type="button" class="removeBttn close ${p.userId}" data-toggle="modal" data-target="#deleteModal">
                     <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -245,5 +258,14 @@ $(function(){
             </div>`;
       }
       $("#polls").html(poll);
+
+     /* for (var p of data) {
+          if (authorId === p.userId) {
+            $("." + p.userId).show();
+          }
+          else {
+            $("." + p.userId).hide();
+          }
+      }*/
   }
 });              
