@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +23,6 @@ public class LoginController {
 
     @Autowired
     private UserRepository repo;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @PostMapping
     public ResponseEntity<User> login(@RequestParam("username") String username,
@@ -37,7 +34,9 @@ public class LoginController {
                     Optional<User> optUser = repo.findByUsername(username);
                     if (optUser.isPresent()) {
                         User user = optUser.get();
-                        if (passwordEncoder.matches(password, user.getPassword())) {
+                        LOGGER.info(user.getPassword());
+                        if (password.equals(user.getPassword())) {
+                            LOGGER.info(user.getPassword() + " novi");
                             return new ResponseEntity<>(user, HttpStatus.OK);
                         }
                     }

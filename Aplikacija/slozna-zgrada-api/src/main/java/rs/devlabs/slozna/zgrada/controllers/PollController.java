@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rs.devlabs.slozna.zgrada.data.Poll;
+import rs.devlabs.slozna.zgrada.data.User;
 import rs.devlabs.slozna.zgrada.data.PollTransfer;
 import rs.devlabs.slozna.zgrada.repos.PollRepository;
-import rs.devlabs.slozna.zgrada.utils.Utils;
+import rs.devlabs.slozna.zgrada.repos.UserRepository;
+import java.util.logging.Logger;
 
 
 @CrossOrigin("http://localhost:4200")
@@ -32,7 +34,9 @@ public class PollController {
     @Autowired
     private PollRepository repo;
     @Autowired
-    private Utils utils;
+    private UserRepository userRepo;
+    
+    private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
 
     @GetMapping
     public ResponseEntity<List<Poll>> getAll() {
@@ -46,13 +50,16 @@ public class PollController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<Poll> create(Principal principal, @RequestBody PollTransfer transfer) {
+    @PostMapping("/{user}")
+    public ResponseEntity<Poll> create(@PathVariable("user") String user, @RequestBody PollTransfer transfer) {
+        LOGGER.info("BILO STA prvi");
         try {
-            Optional<String> optUserId = utils.getUserId(principal);
-            if (optUserId.isPresent()) {
+            LOGGER.info(user);
+            LOGGER.info("BILO STA");
+            Optional<User> optUser = userRepo.findByUsername(user);
+            if (optUser.isPresent()) {
                 if (transfer != null) {
-                    Poll dbPoll = new Poll(transfer, optUserId.get());
+                    Poll dbPoll = new Poll(transfer, optUser.get().getId());
                     dbPoll = repo.save(dbPoll);
                     return new ResponseEntity<>(dbPoll, HttpStatus.CREATED);
                 } else {

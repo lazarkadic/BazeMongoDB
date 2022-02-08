@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rs.devlabs.slozna.zgrada.data.Debt;
 import rs.devlabs.slozna.zgrada.repos.DebtRepository;
 import rs.devlabs.slozna.zgrada.repos.UserRepository;
-import rs.devlabs.slozna.zgrada.utils.Utils;
+
 
 
 @CrossOrigin("http://localhost:4200")
@@ -32,8 +32,6 @@ public class DebtController {
     private DebtRepository repo;
     @Autowired
     private UserRepository userRepo;
-    @Autowired
-    private Utils utils;
 
     @GetMapping
     public ResponseEntity<List<Debt>> getAll() {

@@ -7,7 +7,6 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +27,8 @@ public class UserController {
 
     @Autowired
     private UserRepository repo;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @GetMapping
-//    @PreAuthorize("hasAnyAuthority('ROLE_UPRAVNIK', 'ROLE_STANAR')")
     public ResponseEntity<List<User>> getAll() {
         try {
             Iterable<User> it = repo.findAll();
@@ -88,7 +84,7 @@ public class UserController {
         try {
             if (!repo.existsByUsername(user.getUsername())) {
                 user.setId(UUID.randomUUID().toString());
-                user.setPassword(passwordEncoder.encode(user.getPassword()));
+                user.setPassword(user.getPassword());
                 user = repo.save(user);
                 return new ResponseEntity<>(user, HttpStatus.CREATED);
             } else {
@@ -105,7 +101,7 @@ public class UserController {
             Optional<User> optUser = repo.findById(id);
             if (optUser.isPresent()) {
                 user.setId(id);
-                user.setPassword(passwordEncoder.encode(user.getPassword()));
+                user.setPassword(user.getPassword());
                 user = repo.save(user);
                 return new ResponseEntity<>(user, HttpStatus.CREATED);
             }
@@ -119,7 +115,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") String id) {
         try {
-            repo.deleteById(id);// TODO : delete all other documents related to this user
+            repo.deleteById(id);
             return new ResponseEntity<>(null, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

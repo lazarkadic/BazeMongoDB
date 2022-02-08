@@ -1,8 +1,8 @@
 package rs.devlabs.slozna.zgrada.data;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+//import java.util.HashSet;
+//import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,7 +19,7 @@ public class User implements Serializable {
     private String surname;
     private String password;
     private int apartmentNumber;
-    private Set<Role> roles = new HashSet<>();
+    //private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
@@ -72,11 +72,11 @@ public class User implements Serializable {
         this.apartmentNumber = apartmentNumber;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+//    public Set<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(Set<Role> roles) {
+//        this.roles = roles;
+//    }
 }

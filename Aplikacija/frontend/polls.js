@@ -57,7 +57,7 @@ $(function(){
           var userOnly = userAndPass.substring(0, userAndPass.search(":"));
           var getUserId = function(){
               $.ajaxSetup({
-                headers: { 'Authorization': 'Basic ' + localStorage.getItem('authdata'), 
+                headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'}
               });
@@ -76,7 +76,7 @@ $(function(){
         if(checkRadio != null){
           var answ = $(checkRadio).prop('id');
           $.ajaxSetup({
-            headers: { 'Authorization': 'Basic ' + localStorage.getItem('authdata'), 
+            headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
             'Accept': 'application/json',
             'Content-Type': 'application/json'}
           });
@@ -116,7 +116,7 @@ $(function(){
     $("#btnDelete").click(function(){
         if(delId != ""){
             $.ajaxSetup({
-              headers: { 'Authorization': 'Basic ' + localStorage.getItem('authdata'), 
+              headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
               'Accept': 'application/json',
               'Content-Type': 'application/json'}
             });
@@ -129,7 +129,7 @@ $(function(){
                   
                 }
             });
-            console.log('posle ajaxa  '+delId )
+            console.log('posle ajaxa  ' + delId )
         }
         else{
             delId="";
@@ -138,11 +138,14 @@ $(function(){
 
     var addPoll = function(poll) {
       $.ajaxSetup({
-        headers: { 'Authorization': 'Basic ' + localStorage.getItem('authdata'), 
+        headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
         'Accept': 'application/json',
         'Content-Type': 'application/json'}
       });
-      $.post(BASE_URL + "/poll", JSON.stringify(poll))
+      alert("Proslo");
+      var userAndPass = window.atob(localStorage.getItem('authdata'));
+      var userOnly = userAndPass.substring(0, userAndPass.search(":"));
+      $.post(BASE_URL + "/poll/" + userOnly, JSON.stringify(poll))
       .done(function (data) {
           loadPolls();
           //alert("Proslo");
@@ -151,7 +154,7 @@ $(function(){
 
     var loadPolls = function(){
       $.ajaxSetup({
-        headers: { 'Authorization': 'Basic ' + localStorage.getItem('authdata'), 
+        headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
         'Accept': 'application/json',
         'Content-Type': 'application/json'}
       });

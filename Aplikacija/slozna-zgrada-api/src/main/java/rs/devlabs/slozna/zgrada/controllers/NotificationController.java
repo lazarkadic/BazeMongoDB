@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rs.devlabs.slozna.zgrada.data.Notification;
 import rs.devlabs.slozna.zgrada.repos.NotificationRepository;
-import rs.devlabs.slozna.zgrada.utils.Utils;
+import rs.devlabs.slozna.zgrada.repos.UserRepository;
+import rs.devlabs.slozna.zgrada.data.User;
 
 
 @CrossOrigin("http://localhost:4200")
@@ -30,7 +31,7 @@ public class NotificationController {
     @Autowired
     private NotificationRepository repo;
     @Autowired
-    private Utils utils;
+    private UserRepository userRepo;
 
     @GetMapping
     public ResponseEntity<List<Notification>> getAll() {
@@ -47,12 +48,12 @@ public class NotificationController {
     @PostMapping
     public ResponseEntity<Notification> create(Principal principal, @RequestBody Notification notification) {
         try {
-            Optional<String> optUserId = utils.getUserId(principal);
-            if (optUserId.isPresent()) {
+            Optional<User> optUser = userRepo.findByUsername(principal.getName());
+            if (optUser.isPresent()) {
                 if (notification != null) {
                     notification.setId(UUID.randomUUID().toString());
                     notification.setCreated(System.currentTimeMillis());
-                    notification.setUserId(optUserId.get());
+                    notification.setUserId(optUser.get().getId());
                     notification.setLikes(0);
                     notification = repo.save(notification);
                     return new ResponseEntity<>(notification, HttpStatus.CREATED);
