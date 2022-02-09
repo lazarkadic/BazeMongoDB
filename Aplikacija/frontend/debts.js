@@ -31,9 +31,8 @@ $(function () {
                 async: false
             }).responseText);
             var apNum = user.apartmentNumber;
-            document.getElementById("default").selected = false;
+            (document.querySelector('#default')).selected = false;
             document.getElementById(apNum).selected = true;
-            alert(document.getElementById(apNum).selected);
             (document.querySelector('#forSelect')).style.visibility = 'hidden';
             (document.querySelector('#forLabel')).style.visibility = 'hidden';
             $("#modalTitle").html("Edit debt");
@@ -60,7 +59,6 @@ $(function () {
     //  SAVE
     $("#saveDebt").click(function () {
         var uid = (document.querySelector('#select')).value;
-        alert(uid);
         var el = $("#electricity").val();
         var wa = $("#water").val();
         var ub = $("#unitedBills").val();
@@ -71,10 +69,7 @@ $(function () {
             dataType: "json",
             async: false
         }).responseText);
-        alert(user.username);
         if (el != "" && wa != "" && ub != "" && bb != "" && ot != "" && uid != "default") {
-            //ako se polje vidi onda je novo dugovanje 
-            if ((document.querySelector('#forSelect')).style.visibility == 'visible') {
                 var json = "{\"electricity\":" + el + ", \"water\":" + wa + ", \"unitedBills\":" + ub + ", \"buildingBills\":" + bb + ", \"other\":" + ot + ", \"userId\":\"" + user.id + "\"}";
                 $.ajax({
                     type: "POST",
@@ -89,7 +84,7 @@ $(function () {
                     $("#alertModal").modal('show');
                     $("#modal").modal('hide');
                     });
-            } else {
+        } else if (el != "" && wa != "" && ub != "" && bb != "" && ot != "" && uid == "default") {
                 var json = "{\"electricity\":" + el + ", \"water\":" + wa + ", \"unitedBills\":" + ub + ", \"buildingBills\":" + bb + ", \"other\":" + ot + "}";
                 $.ajax({
                     type: "PUT",
@@ -100,7 +95,6 @@ $(function () {
                         getAllDebts();
                     }
                 });
-            }
         } else {
             $("#tekst").html("Incorrectly filled out form!");
             $("#alertModal").modal('show');

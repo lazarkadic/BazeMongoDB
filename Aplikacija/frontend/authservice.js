@@ -2,18 +2,12 @@ export class AuthenticationService {
 
     setDefaultHeader() {
         $.ajaxSetup({
-            headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
+            headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'}
         });
 
     }
-
-  /*  UNsetDefaultHeader() {
-        $.ajaxSetup({
-            headers: { 'Authorization': ''  }
-        });
-    }*/
 
     BASE_URL = "http://localhost:8080";
 

@@ -83,7 +83,7 @@ $(function () {
         $("#deleteModal").modal("hide");
     });
 
-
+ 
     function getAndPrintNotifications() {
 
         var authorId = '';

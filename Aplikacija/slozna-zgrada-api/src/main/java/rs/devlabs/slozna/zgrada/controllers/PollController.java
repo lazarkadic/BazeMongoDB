@@ -35,8 +35,6 @@ public class PollController {
     private PollRepository repo;
     @Autowired
     private UserRepository userRepo;
-    
-    private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
 
     @GetMapping
     public ResponseEntity<List<Poll>> getAll() {

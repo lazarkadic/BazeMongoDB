@@ -54,7 +54,7 @@ $(function(){
           var userOnly = userAndPass.substring(0, userAndPass.search(":"));
           var getUserId = function(){
               $.ajaxSetup({
-                headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
+                headers: { 
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'}
               });
@@ -73,7 +73,7 @@ $(function(){
         if(checkRadio != null){
           var answ = $(checkRadio).prop('id');
           $.ajaxSetup({
-            headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
+            headers: { 
             'Accept': 'application/json',
             'Content-Type': 'application/json'}
           });
@@ -114,7 +114,7 @@ $(function(){
     $("#btnDelete").click(function(){
         if(delId != ""){
             $.ajaxSetup({
-              headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
+              headers: { 
               'Accept': 'application/json',
               'Content-Type': 'application/json'}
             });
@@ -136,7 +136,7 @@ $(function(){
 
     var addPoll = function(poll) {
       $.ajaxSetup({
-        headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
+        headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'}
       });
@@ -151,26 +151,13 @@ $(function(){
 
      var loadPolls = function(){
       $.ajaxSetup({
-        headers: { /*'Authorization': 'Basic ' + localStorage.getItem('authdata'),*/ 
+        headers: {  
         'Accept': 'application/json',
         'Content-Type': 'application/json'}
       });
       $.get(BASE_URL + "/poll", function (data, status) {
         printPolls(data);
       });
-
-      // var authorId = '';
-      // $.get(service.BASE_URL + "/user/u/" + atob(localStorage.getItem('user')), function (data) {
-
-      //   authorId = data.id;
-      // }).done(function () {
-
-      //     $.get(BASE_URL + "/poll", function (data, status) {
-
-      //       printPolls(data, authorId);
-
-      //     });
-      // });
 
     };
 
@@ -183,7 +170,7 @@ $(function(){
     };
 
 
-    function printPolls(data/*, authorId*/) {
+    function printPolls(data) {
 
       var poll = ``;
   
@@ -213,10 +200,7 @@ $(function(){
         var timeonly = miniDate.toString().substring(15, 21);
         miniDate = dateonly + " /" + timeonly;
         values[3] = miniDate;
-        // var date = new Date(p.created);// Milliseconds to date
-        // console.log(date.toString());
 
-        //${Object.getOwnPropertyNames(p.answers)[0]} -> ${values[0]}
           poll +=`
             <div class="card card-inverse card-info">
             <div class="card-footer">
@@ -256,16 +240,8 @@ $(function(){
                   </p>
               </div>
             </div>`;
-      }
+      } 
       $("#polls").html(poll);
 
-     /* for (var p of data) {
-          if (authorId === p.userId) {
-            $("." + p.userId).show();
-          }
-          else {
-            $("." + p.userId).hide();
-          }
-      }*/
   }
 });              

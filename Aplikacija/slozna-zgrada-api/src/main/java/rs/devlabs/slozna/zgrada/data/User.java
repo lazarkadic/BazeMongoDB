@@ -1,8 +1,6 @@
 package rs.devlabs.slozna.zgrada.data;
 
 import java.io.Serializable;
-//import java.util.HashSet;
-//import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;

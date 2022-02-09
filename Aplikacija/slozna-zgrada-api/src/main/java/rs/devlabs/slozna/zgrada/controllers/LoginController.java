@@ -34,9 +34,7 @@ public class LoginController {
                     Optional<User> optUser = repo.findByUsername(username);
                     if (optUser.isPresent()) {
                         User user = optUser.get();
-                        LOGGER.info(user.getPassword());
                         if (password.equals(user.getPassword())) {
-                            LOGGER.info(user.getPassword() + " novi");
                             return new ResponseEntity<>(user, HttpStatus.OK);
                         }
                     }

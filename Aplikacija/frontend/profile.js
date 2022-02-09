@@ -16,7 +16,7 @@ $(function () {
         user = data;
         fillInfoAndForm(data);
 
-        if (data.roles.pop() == 'UPRAVNIK') {
+        if (data.role === 'UPRAVNIK') {
             $(".tabEditUsers").css('display','inline');
         }
     });
@@ -59,10 +59,12 @@ $(function () {
         $("#confirmpass").val('');
     });
 
+
     $("#nevermind").click(function () {
         $("#mismatch").html('');
         $("#newpass").val('');
     });
+
 
     $("#editTab").click(function () {
         $("#newpass").val('');
@@ -102,7 +104,7 @@ $(function () {
                 edituser.name = $("#editfirstname").val();
                 edituser.surname = $("#editlastname").val();
                 edituser.password = $("#editconfirmpass").val();
-                edituser.roles = new Array($("#editrole").val());
+                edituser.role = ($("#editrole").val());
                 edituser.apartmentNumber = $("#editApnumber").val();
 
                 var body = JSON.stringify(edituser)
@@ -196,7 +198,7 @@ $(function () {
                 adduser.surname = $("#editlastname").val();
                 adduser.password = $("#editconfirmpass").val();
                 adduser.apartmentNumber = $("#editApnumber").val();
-                adduser.roles = new Array($("#editrole").val());                
+                adduser.role = ($("#editrole").val());                
 
                 var body = JSON.stringify(adduser)
 
@@ -283,7 +285,7 @@ function fillEditForm(data) {
     $("#editfirstname").val(data.name);
     $("#editlastname").val(data.surname);
     $("#editApnumber").val(data.apartmentNumber);
-    $("#editrole").val(data.roles);
+    $("#editrole").val(data.role);
     $("#editpass").val('');
     $("#editconfirmpass").val('');
 }
@@ -313,7 +315,7 @@ function fillTable(data) {
                         <td>${d.name}</td>
                         <td>${d.surname}</td>
                         <td>${d.apartmentNumber}</td>
-                        <td>${d.roles}</td>
+                        <td>${d.role}</td>
                         <td><a id='${d.id}' 
                                 type="button" 
                                 class='btn btn-info btn-xs edituser m-1' 
